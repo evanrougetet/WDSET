@@ -30,7 +30,91 @@ private:
     QPushButton *refreshButton;
 
     QcGaugeWidget *mDegGauge;
+    QcLabelItem *labArrowTendanceDeg;
+    QcLabelItem *labArrowTendanceAlt;
+    QcLabelItem *labArrowTendancePress;
+
+
+public:
+
+    QcNeedleItem *getMDegNeedle() const;
+
+    QcNeedleItem *getTDegNeedle() const;
+
+    QcBackgroundItem *getBkgDeg() const;
+
+    QcBackgroundItem *getBkgtDeg() const;
+
+    QcDegreesItem *getDegreesItemDeg() const;
+
+    QcValuesItem *getValuesDeg() const;
+
+    QcLabelItem *getLebUnitDeg() const;
+
+    QcLabelItem *getLabDeg() const;
+
+    QcDegreesItem *getDegreesItemAlt() const;
+
+    QcValuesItem *getValuesAlt() const;
+
+    QcLabelItem *getLabUnitAlt() const;
+
+    QcLabelItem *getLabAlt() const;
+
+    QcDegreesItem *getDegreesItemPress() const;
+
+    QcValuesItem *getValuesPress() const;
+
+    QcLabelItem *getLabUnitPress() const;
+
+    QcLabelItem *getLabPress() const;
+
+    QcLabelItem *getLabUnitTAlt() const;
+
+    QcDegreesItem *getDegreesItemtAlt() const;
+
+    QcLabelItem *getLabUnitTPress() const;
+
+    QcDegreesItem *getDegreesItemtPress() const;
+
+    QcGaugeWidget *getTDegGauge() const;
+
+    QcGaugeWidget *getTAltGauge() const;
+
+    QcGaugeWidget *getTPressGauge() const;
+
+    QcNeedleItem *getMAltNeedle() const;
+
+    QcNeedleItem *getMPressNeedle() const;
+
+    QcNeedleItem *getTAltNeedle() const;
+
+    QcNeedleItem *getTPressNeedle() const;
+
+    QcBackgroundItem *getBkgAlt() const;
+
+    QcBackgroundItem *getBkgPress() const;
+
+    QcBackgroundItem *getBkgtPress() const;
+
+    QcBackgroundItem *getBkgtAlt() const;
+
+    QcLabelItem *getLabArrowTendanceAlt() const;
+    QcLabelItem *getLabArrowTendanceDeg() const;
+    QcLabelItem *getLabArrowTendancePress() const;
+
+private:
     QcGaugeWidget *mAltGauge;
+    QcLabelItem *labUnitTDeg;
+public:
+    QcLabelItem *getLabUnitTDeg() const;
+
+    QcDegreesItem *getDegreesItemtDeg() const;
+
+    QcLabelItem *getLabUnitDeg() const;
+
+private:
+    QcDegreesItem *degreesItemtDeg;
 
 
     QcNeedleItem *mDegNeedle;
@@ -40,7 +124,7 @@ private:
 
     QcDegreesItem *degreesItemDeg;
     QcValuesItem *valuesDeg;
-    QcLabelItem *lebUnitDeg;
+    QcLabelItem *labUnitDeg;
     QcLabelItem *labDeg;
 
     QcDegreesItem *degreesItemAlt;

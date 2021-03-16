@@ -66,9 +66,9 @@ fenetre::fenetre() : QFrame() {
 
 
     // Creation du texte (unité)
-    lebUnitDeg = mDegGauge->addLabel(70);
-    lebUnitDeg->setText("°C");
-    lebUnitDeg->setColor(Qt::white);
+    labUnitDeg = mDegGauge->addLabel(70);
+    labUnitDeg->setText("°C");
+    labUnitDeg->setColor(Qt::white);
 
     // Creation texte valeur affiché
     labDeg = mDegGauge->addLabel(40);
@@ -172,6 +172,112 @@ fenetre::fenetre() : QFrame() {
     mPressGauge->addBackground(7);
 
 
+/* CREATION JAUGE TENDANCE °C */
+    tDegGauge = new QcGaugeWidget;
+
+    tDegGauge->addBackground(99);
+
+    bkgtDeg = tDegGauge->addBackground(92);
+    bkgtDeg = tDegGauge->addBackground(92);
+    bkgtDeg->clearrColors();
+    bkgtDeg->addColor(1,Qt::black);
+
+    degreesItemtDeg = tDegGauge->addDegrees(65); // Creation des petits batons
+    degreesItemtDeg = tDegGauge->addDegrees(65); // Creation des petits batons
+    degreesItemtDeg->setColor(Qt::white);
+
+    QcColorBand *clrBandT = tDegGauge->addColorBand(50); // Creation de la bande couleur
+    clrBandT->setValueRange(0, 100);
+    QList<QPair<QColor,float>> *colorsT = new QList<QPair<QColor,float>>;
+    colorsT->push_back(QPair<QColor,float>(Qt::red,50)); // Configuration de la couleur sur la bande, jusqu'a 800
+    colorsT->push_back(QPair<QColor,float>(Qt::green,100));
+    clrBandT->setColors(*colorsT);
+
+    labArrowTendanceDeg = tDegGauge->addLabel(50);
+    labArrowTendanceDeg->setText("↑");
+    labArrowTendanceDeg->setColor(Qt::red);
+
+    labUnitTDeg = tDegGauge->addLabel(70); // affichage unité
+    labUnitTDeg->setText("Tendance °C ");
+    labUnitTDeg->setColor(Qt::white);
+
+
+    tDegNeedle = tDegGauge->addNeedle(60); // Creation aiguille
+    tDegNeedle->setColor(Qt::white); // COnfig couleur de l'aiguille
+    tDegNeedle->setValueRange(-5,5);
+    tDegGauge->addBackground(7);
+
+
+    /* CREATION JAUGE TENDANCE ALT */
+
+    tAltGauge = new QcGaugeWidget;
+
+    tAltGauge->addBackground(99);
+
+    bkgtAlt = tAltGauge->addBackground(92);
+    bkgtAlt = tAltGauge->addBackground(92);
+    bkgtAlt->clearrColors();
+    bkgtAlt->addColor(1,Qt::black);
+
+    degreesItemtAlt = tAltGauge->addDegrees(65); // Creation des petits batons
+    degreesItemtAlt = tAltGauge->addDegrees(65); // Creation des petits batons
+    degreesItemtAlt->setColor(Qt::white);
+
+    clrBandT = tAltGauge->addColorBand(50); // Creation de la bande couleur
+    colorsT->push_back(QPair<QColor,float>(Qt::red,50)); // Configuration de la couleur sur la bande, jusqu'a 800
+    colorsT->push_back(QPair<QColor,float>(Qt::green,100));
+    clrBandT->setColors(*colorsT);
+
+    labArrowTendanceAlt = tAltGauge->addLabel(50);
+    labArrowTendanceAlt->setText("↑");
+    labArrowTendanceAlt->setColor(Qt::red);
+
+    labUnitTAlt = tAltGauge->addLabel(70); // affichage unité
+    labUnitTAlt->setText("Tendance m");
+    labUnitTAlt->setColor(Qt::white);
+
+
+    tAltNeedle = tAltGauge->addNeedle(60); // Creation aiguille
+    tAltNeedle->setColor(Qt::white); // COnfig couleur de l'aiguille
+    tAltNeedle->setValueRange(-1,1);
+    tAltGauge->addBackground(7);
+
+    /* CREATION JAUGE TENDANCE PRESS */
+
+    tPressGauge = new QcGaugeWidget;
+
+    tPressGauge->addBackground(99);
+
+    bkgtPress = tPressGauge->addBackground(92);
+    bkgtPress = tPressGauge->addBackground(92);
+    bkgtPress->clearrColors();
+    bkgtPress->addColor(1,"Qt::black");
+
+    degreesItemtPress = tPressGauge->addDegrees(65); // Creation des petits batons
+    degreesItemtPress = tPressGauge->addDegrees(65); // Creation des petits batons
+    degreesItemtPress->setColor(Qt::white);
+
+    clrBandT = tPressGauge->addColorBand(50); // Creation de la bande couleur
+    colorsT->push_back(QPair<QColor,float>(Qt::red,50)); // Configuration de la couleur sur la bande, jusqu'a 800
+    colorsT->push_back(QPair<QColor,float>(Qt::green,100));
+    clrBandT->setColors(*colorsT);
+
+    labArrowTendancePress = tPressGauge->addLabel(50);
+    labArrowTendancePress->setText("↑");
+    labArrowTendancePress->setColor(Qt::red);
+
+    labUnitTPress = tPressGauge->addLabel(70); // affichage unité
+    labUnitTPress->setText("Tendance Hpa");
+    labUnitTPress->setColor(Qt::white);
+
+
+    tPressNeedle = tPressGauge->addNeedle(60); // Creation aiguille
+    tPressNeedle->setColor(Qt::white); // COnfig couleur de l'aiguille
+    tPressNeedle->setValueRange(-1,1);
+    tPressGauge->addBackground(7);
+
+
+
 
     layout->addWidget(mDegGauge,1,0);
     layout->addWidget(mAltGauge,1,1);
@@ -219,4 +325,152 @@ QcGaugeWidget *fenetre::getMAltGauge() const {
 
 QcGaugeWidget *fenetre::getMPressGauge() const {
     return mPressGauge;
+}
+
+QcNeedleItem *fenetre::getMDegNeedle() const {
+    return mDegNeedle;
+}
+
+QcNeedleItem *fenetre::getTDegNeedle() const {
+    return tDegNeedle;
+}
+
+QcBackgroundItem *fenetre::getBkgDeg() const {
+    return bkgDeg;
+}
+
+QcBackgroundItem *fenetre::getBkgtDeg() const {
+    return bkgtDeg;
+}
+
+QcDegreesItem *fenetre::getDegreesItemDeg() const {
+    return degreesItemDeg;
+}
+
+QcValuesItem *fenetre::getValuesDeg() const {
+    return valuesDeg;
+}
+
+QcLabelItem *fenetre::getLebUnitDeg() const {
+    return labUnitDeg;
+}
+
+QcLabelItem *fenetre::getLabDeg() const {
+    return labDeg;
+}
+
+QcDegreesItem *fenetre::getDegreesItemAlt() const {
+    return degreesItemAlt;
+}
+
+QcValuesItem *fenetre::getValuesAlt() const {
+    return valuesAlt;
+}
+
+QcLabelItem *fenetre::getLabUnitAlt() const {
+    return labUnitAlt;
+}
+
+QcLabelItem *fenetre::getLabAlt() const {
+    return labAlt;
+}
+
+QcDegreesItem *fenetre::getDegreesItemPress() const {
+    return degreesItemPress;
+}
+
+QcValuesItem *fenetre::getValuesPress() const {
+    return valuesPress;
+}
+
+QcLabelItem *fenetre::getLabUnitPress() const {
+    return labUnitPress;
+}
+
+QcLabelItem *fenetre::getLabPress() const {
+    return labPress;
+}
+
+QcLabelItem *fenetre::getLabUnitTAlt() const {
+    return labUnitTAlt;
+}
+
+QcDegreesItem *fenetre::getDegreesItemtAlt() const {
+    return degreesItemtAlt;
+}
+
+QcLabelItem *fenetre::getLabUnitTPress() const {
+    return labUnitTPress;
+}
+
+QcDegreesItem *fenetre::getDegreesItemtPress() const {
+    return degreesItemtPress;
+}
+
+QcGaugeWidget *fenetre::getTDegGauge() const {
+    return tDegGauge;
+}
+
+QcGaugeWidget *fenetre::getTAltGauge() const {
+    return tAltGauge;
+}
+
+QcGaugeWidget *fenetre::getTPressGauge() const {
+    return tPressGauge;
+}
+
+QcNeedleItem *fenetre::getMAltNeedle() const {
+    return mAltNeedle;
+}
+
+QcNeedleItem *fenetre::getMPressNeedle() const {
+    return mPressNeedle;
+}
+
+QcNeedleItem *fenetre::getTAltNeedle() const {
+    return tAltNeedle;
+}
+
+QcNeedleItem *fenetre::getTPressNeedle() const {
+    return tPressNeedle;
+}
+
+QcBackgroundItem *fenetre::getBkgAlt() const {
+    return bkgAlt;
+}
+
+QcBackgroundItem *fenetre::getBkgPress() const {
+    return bkgPress;
+}
+
+QcBackgroundItem *fenetre::getBkgtPress() const {
+    return bkgtPress;
+}
+
+QcBackgroundItem *fenetre::getBkgtAlt() const {
+    return bkgtAlt;
+}
+
+QcLabelItem *fenetre::getLabUnitTDeg() const {
+    return labUnitTDeg;
+}
+
+QcDegreesItem *fenetre::getDegreesItemtDeg() const {
+    return degreesItemtDeg;
+}
+
+QcLabelItem *fenetre::getLabUnitDeg() const {
+    return labUnitDeg;
+}
+
+QcLabelItem *fenetre::getLabArrowTendanceAlt() const {
+    return labArrowTendanceAlt;
+}
+
+QcLabelItem *fenetre::getLabArrowTendanceDeg() const {
+    return labArrowTendanceDeg;
+}
+
+QcLabelItem *fenetre::getLabArrowTendancePress() const {
+    return labArrowTendancePress;
 }
