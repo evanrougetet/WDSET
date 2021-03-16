@@ -10,6 +10,8 @@
 
 fenetre::fenetre() : QFrame() {
 
+    
+
     altvalue =new QLabel;
     tempvalue =new QLabel;
     pressvalue =new QLabel;
