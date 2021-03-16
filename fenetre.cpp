@@ -25,10 +25,10 @@ fenetre::fenetre() : QFrame() {
 
 
 
+
     layout= new QGridLayout;
 
-    refreshButton = new QPushButton("Refresh");//création boutton settings
-    refreshButton->setStyleSheet("background-color: rgb(206,206,206);");
+
 
     /* CRATION JAUGE TEMPERATURE */
     mDegGauge = new QcGaugeWidget();
@@ -77,10 +77,13 @@ fenetre::fenetre() : QFrame() {
 
     // Creation aiguille
     mDegNeedle = mDegGauge->addNeedle(60);
+    mDegNeedle->setCurrentValue(0);
     mDegNeedle->setLabel(labDeg);
     mDegNeedle->setColor(Qt::white);
     mDegNeedle->setValueRange(-10, 40);
     mDegGauge->addBackground(7); // Point gris sur l'aiguille
+
+
 
     // CREATION JAUGE ALT
 
@@ -119,6 +122,7 @@ fenetre::fenetre() : QFrame() {
     labAlt ->setText("");
     labAlt ->setColor(Qt::white);
     mAltNeedle = mAltGauge->addNeedle(60); // Creation aiguille
+    mAltNeedle->setCurrentValue(1000);
     mAltNeedle->setLabel(labAlt); //mettre aiguille à la valeur demandé
     mAltNeedle->setColor(Qt::white); // COnfig couleur de l'aiguille
     mAltNeedle->setValueRange(100, 1000);
@@ -165,7 +169,8 @@ fenetre::fenetre() : QFrame() {
     labPress = mPressGauge->addLabel(40); // Valeur affiché
     labPress->setText("");
     labPress->setColor(Qt::white);
-    mPressNeedle = mPressGauge->addNeedle(60); // Creation aiguille
+    mPressNeedle = mPressGauge->addNeedle(60); // Creation aiguille//
+    mPressNeedle->setCurrentValue(1000);
     mPressNeedle->setLabel(labPress);
     mPressNeedle->setColor(Qt::white); // COnfig couleur de l'aiguille
     mPressNeedle->setValueRange(960, 1060);
@@ -311,9 +316,6 @@ QLabel *fenetre::getPressvalue() const {
     return pressvalue;
 }
 
-QPushButton *fenetre::getRefreshButton() const {
-    return refreshButton;
-}
 
 QcGaugeWidget *fenetre::getMDegGauge() const {
     return mDegGauge;
@@ -335,89 +337,6 @@ QcNeedleItem *fenetre::getTDegNeedle() const {
     return tDegNeedle;
 }
 
-QcBackgroundItem *fenetre::getBkgDeg() const {
-    return bkgDeg;
-}
-
-QcBackgroundItem *fenetre::getBkgtDeg() const {
-    return bkgtDeg;
-}
-
-QcDegreesItem *fenetre::getDegreesItemDeg() const {
-    return degreesItemDeg;
-}
-
-QcValuesItem *fenetre::getValuesDeg() const {
-    return valuesDeg;
-}
-
-QcLabelItem *fenetre::getLebUnitDeg() const {
-    return labUnitDeg;
-}
-
-QcLabelItem *fenetre::getLabDeg() const {
-    return labDeg;
-}
-
-QcDegreesItem *fenetre::getDegreesItemAlt() const {
-    return degreesItemAlt;
-}
-
-QcValuesItem *fenetre::getValuesAlt() const {
-    return valuesAlt;
-}
-
-QcLabelItem *fenetre::getLabUnitAlt() const {
-    return labUnitAlt;
-}
-
-QcLabelItem *fenetre::getLabAlt() const {
-    return labAlt;
-}
-
-QcDegreesItem *fenetre::getDegreesItemPress() const {
-    return degreesItemPress;
-}
-
-QcValuesItem *fenetre::getValuesPress() const {
-    return valuesPress;
-}
-
-QcLabelItem *fenetre::getLabUnitPress() const {
-    return labUnitPress;
-}
-
-QcLabelItem *fenetre::getLabPress() const {
-    return labPress;
-}
-
-QcLabelItem *fenetre::getLabUnitTAlt() const {
-    return labUnitTAlt;
-}
-
-QcDegreesItem *fenetre::getDegreesItemtAlt() const {
-    return degreesItemtAlt;
-}
-
-QcLabelItem *fenetre::getLabUnitTPress() const {
-    return labUnitTPress;
-}
-
-QcDegreesItem *fenetre::getDegreesItemtPress() const {
-    return degreesItemtPress;
-}
-
-QcGaugeWidget *fenetre::getTDegGauge() const {
-    return tDegGauge;
-}
-
-QcGaugeWidget *fenetre::getTAltGauge() const {
-    return tAltGauge;
-}
-
-QcGaugeWidget *fenetre::getTPressGauge() const {
-    return tPressGauge;
-}
 
 QcNeedleItem *fenetre::getMAltNeedle() const {
     return mAltNeedle;
@@ -433,34 +352,6 @@ QcNeedleItem *fenetre::getTAltNeedle() const {
 
 QcNeedleItem *fenetre::getTPressNeedle() const {
     return tPressNeedle;
-}
-
-QcBackgroundItem *fenetre::getBkgAlt() const {
-    return bkgAlt;
-}
-
-QcBackgroundItem *fenetre::getBkgPress() const {
-    return bkgPress;
-}
-
-QcBackgroundItem *fenetre::getBkgtPress() const {
-    return bkgtPress;
-}
-
-QcBackgroundItem *fenetre::getBkgtAlt() const {
-    return bkgtAlt;
-}
-
-QcLabelItem *fenetre::getLabUnitTDeg() const {
-    return labUnitTDeg;
-}
-
-QcDegreesItem *fenetre::getDegreesItemtDeg() const {
-    return degreesItemtDeg;
-}
-
-QcLabelItem *fenetre::getLabUnitDeg() const {
-    return labUnitDeg;
 }
 
 QcLabelItem *fenetre::getLabArrowTendanceAlt() const {
